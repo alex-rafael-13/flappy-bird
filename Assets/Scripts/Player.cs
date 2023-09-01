@@ -4,11 +4,27 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private SpriteRenderer spriteRenderer;
+    public Sprite[] sprites;
+    private int spriteIndex;
+
     private Vector3 direction;
-    
     public float gravity = -9.8f;
     public float strength = 5f;
 
+    //Unity function that initializes game objects
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    //Unity function that gets called right when game starts
+    private void Start()
+    {
+        InvokeRepeating(nameof(AnimateSprite), 0.15f, 0.15f);
+    }
+
+    //Unity function that gets called every frame, good for changing calculations and inputs
     private void Update() //Inputs
     // Space bar or left click flaps the bird
     {
@@ -26,5 +42,17 @@ public class Player : MonoBehaviour
 
         direction.y += gravity * Time.deltaTime;
         transform.position += direction * Time.deltaTime; //Framerate independent
+    }
+
+    //Looks through player sprite for animation
+    private void AnimateSprite()
+    {
+        spriteIndex ++;
+
+        if (spriteIndex >= sprites.Length){
+            spriteIndex = 0;
+        }
+
+        spriteRenderer.sprite = sprites[spriteIndex];
     }
 }
