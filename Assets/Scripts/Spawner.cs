@@ -14,6 +14,10 @@ public class Spawner : MonoBehaviour
 
     private void OnDisable()
     {
-        CancelInvoke(nameof(Spawn))
+        CancelInvoke(nameof(Spawn));
+    }
+    private void Spawn()
+    {
+        GameObject pipes = Instantiate(prefab, transform.position, Quaternion.identity);
     }
 }
