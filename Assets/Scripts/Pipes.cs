@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Pipes : MonoBehaviour
 {
+    //Default speed is 5
     public float speed = 5f;
 
     private float leftEdge;
@@ -26,6 +27,7 @@ public class Pipes : MonoBehaviour
         transform.position += Vector3.left * speed * Time.deltaTime;
 
         //Removing pipes at the end of the screen
+        //This allows games to run smoothly, as it does not need to keep track of pipes that are already out of play
         if(transform.position.x < leftEdge){ //Checks if pipe has reached the left edge
             Destroy(gameObject);
         }
