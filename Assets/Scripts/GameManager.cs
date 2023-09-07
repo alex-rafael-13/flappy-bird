@@ -1,5 +1,3 @@
-
-using System.Diagnostics;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,15 +5,14 @@ public class GameManager : MonoBehaviour
     //Private as it does not need to be changed on game manager
     private int score;
 
-    private void GameOver()
+    public void GameOver()
     {
-        Debug.log("Game Over");
+        Debug.Log("Game Over");
     }
 
     //Func that increases score
-    private void IncreaseScore()
+    public void IncreaseScore()
     {
         score ++;
     } 
-
 }

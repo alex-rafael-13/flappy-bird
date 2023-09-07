@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -54,5 +52,19 @@ public class Player : MonoBehaviour
         }
 
         spriteRenderer.sprite = sprites[spriteIndex];
+    }
+
+    //Triggers for game state
+    private void OnTriggerEnter2D(Collider2D other){
+
+        if(other.gameObject.tag == "Obstacle"){
+            //Not the best funct to use since its costly on performance but okay for this example
+            FindObjectOfType<GameManager>().GameOver();
+        }
+
+        if(other.gameObject.tag == "Scoring"){
+            //Not the best funct to use since its costly on performance but okay for this example
+            FindObjectOfType<GameManager>().IncreaseScore();
+        }
     }
 }
