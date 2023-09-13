@@ -22,6 +22,15 @@ public class Player : MonoBehaviour
         InvokeRepeating(nameof(AnimateSprite), 0.15f, 0.15f);
     }
 
+    //Resetting position and movement of the previous run
+    private void OnEnable()
+    {
+        Vector3 position = transform.position;
+        position.y = 0f;
+        transform.position = position;
+        direction = Vector3.zero;
+    }
+
     //Unity function that gets called every frame, good for changing calculations and inputs
     private void Update() //Inputs
     // Space bar or left click flaps the bird
