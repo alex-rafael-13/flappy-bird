@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Player player;
     public Text scoreText;
+    public Player player;
     public GameObject playButton;     
     public GameObject gameOver;     
     //Private as it does not need to be changed on game manager
@@ -17,13 +17,26 @@ public class GameManager : MonoBehaviour
 
         Pause();
     }
-    private void Play()
+    
+    public void Play()
     {
         score = 0;
 
         scoreText.text = score.ToString();
+        gameOver.SetActive(false);
+        playButton.SetActive(false);
+
+        Time.timeScale = 1f;
+        player.enabled = true;
+
+        //Destroy all pipes from previous run
+        Pipes[] pipes = FindObjectsOfType<Pipes>();
+
+        for(int i = 0; i < pipes.Length; i++) {
+            Destroy(pipes[i].gameObject);
+        }
     }
-    private void Pause()
+    public void Pause()
     {
         //This pauses the game
         Time.timeScale = 0f;
